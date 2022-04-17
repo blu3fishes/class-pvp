@@ -1,0 +1,1 @@
+give @p tipped_arrow{display:{Name:'{"text":"Arrow of Water o\' forest","color":"blue","bold":true,"italic":false}',Lore:['{"text":"교란용 화살","color":"white","bold":true,"italic":false}']},CustomPotionEffects:[{Id:9b,Amplifier:2b,Duration:160,ShowParticles:0b}],CustomPotionColor:7994611} 16

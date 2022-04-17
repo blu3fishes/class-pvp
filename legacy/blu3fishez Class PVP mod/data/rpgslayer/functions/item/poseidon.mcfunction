@@ -1,0 +1,1 @@
+give @p iron_axe{display:{Name:'{"text":"[R] 포세이돈의 분노","color":"aqua","bold":true,"italic":false}',Lore:['{"text":"바다의 공포를 다시 느끼게 해주마.","color":"dark_blue","bold":true,"italic":false}']},Unbreakable:0b,Damage:248,CustomModelData:1329,lancer_ulti:1b,Enchantments:[{id:"minecraft:channeling",lvl:1s}]} 1

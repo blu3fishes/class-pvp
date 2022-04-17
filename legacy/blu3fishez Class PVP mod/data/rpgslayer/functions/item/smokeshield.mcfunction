@@ -1,0 +1,2 @@
+give @p minecraft:lingering_potion{smoke:1b,display:{Name:'{"text":"[Ulti] 연막술","color":"gray","bold":true,"italic":false,"underlined":true}',Lore:['{"text":"액체형 연막을 내뿜는다. 7초동안 시력을 멀게한다.","color":"dark_gray","bold":true,"italic":false}']},CustomPotionEffects:[{Id:15b,Amplifier:2b,Duration:130,ShowParticles:1b}],CustomPotionColor:7237230} 2
+scoreboard players set @p nu_potion 0

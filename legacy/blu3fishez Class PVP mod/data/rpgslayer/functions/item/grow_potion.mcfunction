@@ -1,0 +1,1 @@
+give @p minecraft:splash_potion{HideFlags:32,sl_potion:1b,display:{Name:'{"text":"[Skill] 피로 짙은 회복","color":"dark_red","bold":true,"italic":false}',Lore:['{"text":"슬레이어 집단 고유의 흑마술","color":"dark_gray","bold":true,"italic":false}']},CustomPotionEffects:[{Id:6b,Amplifier:2b,Duration:1}],CustomPotionColor:5373952} 1

@@ -1,0 +1,2 @@
+give @p ender_pearl{pearl:1b,display:{Name:'{"text":"[Skill] 신출귀몰","color":"gray","bold":true,"italic":false}',Lore:['{"text":"지피지기 백전불패","color":"blue","bold":true,"italic":false}']}} 4
+scoreboard players set @p pearlcount 0
