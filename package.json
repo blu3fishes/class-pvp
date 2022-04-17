@@ -1,0 +1,24 @@
+{
+  "name": "class-pvp",
+  "version": "1.0.0",
+  "description": "A data pack created with Sandstone",
+  "scripts": {
+    "watch": "sand watch",
+    "build": "sand build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mvcstone": "github:blu3fishes/mvcstone",
+    "sandstone": "^0.13.6"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.24",
+    "sandstone-cli": "^0.5.4",
+    "typescript": "^4.6.3"
+  },
+  "engines": {
+    "node": ">=12.9.0"
+  }
+}

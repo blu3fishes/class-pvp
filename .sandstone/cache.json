@@ -1,0 +1,15 @@
+{
+  "C:\\Users\\ChanW\\Desktop\\repository\\class-pvp\\src": {
+    "files": {
+      "pack.mcmeta": "7dc3e1913a20bd3be723dc4bd5e5b819",
+      "data\\minecraft\\tags\\functions\\tick.json": "1b19d455ddd84fb9023f2ec1adc819d7",
+      "data\\minecraft\\tags\\functions\\load.json": "c5d95a13e73d7473edccc6730f9e743e",
+      "data\\class-pvp\\functions\\tick.mcfunction": "3d4c07f24ef89a8d6904ed98af7d5483",
+      "data\\class-pvp\\functions\\second.mcfunction": "db27d743524bc168a64ad9baa5735572",
+      "data\\class-pvp\\functions\\second\\execute_as.mcfunction": "908ed194aaeea18d03d9bb12e9679f4c",
+      "data\\class-pvp\\functions\\slayer\\init.mcfunction": "970709aabce888f0ffabca0eac307a6f",
+      "data\\class-pvp\\functions\\__init__.mcfunction": "afbe48ab22fe74bd72d7c0dc7bbba705"
+    },
+    "resultFolder": "dist\\class-pvp"
+  }
+}
