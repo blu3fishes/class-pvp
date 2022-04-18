@@ -3,11 +3,11 @@ import { Slayer } from "./slayer.model";
 
 
 export class SlayerService {
-  private SlayerModel = new Slayer();
+  private slayerModel = new Slayer();
   static ULTI_TIME = 800;
   static KIT_TIME = 12;
   getHealthKit() {
-    _.if(this.SlayerModel.slayerKitTime.scoreboard('@s').greaterThan(44), () => {
+    _.if(this.slayerModel.slayerKitTime.scoreboard('@s').greaterThan(44), () => {
 
     });
   }
@@ -16,21 +16,21 @@ export class SlayerService {
     effect.clear('@s');
     clear('@s');
 
-    this.SlayerModel.slayerKitTime.scoreboard(Selector('@s')).set(SlayerService.KIT_TIME - 1);
-    this.SlayerModel.slayerKitTime.scoreboard(Selector('@s')).set(SlayerService.ULTI_TIME - 1);
+    this.slayerModel.slayerKitTime.scoreboard(Selector('@s')).set(SlayerService.KIT_TIME - 1);
+    this.slayerModel.slayerKitTime.scoreboard(Selector('@s')).set(SlayerService.ULTI_TIME - 1);
 
-    this.SlayerModel.giveItem('@s');
+    this.slayerModel.giveItem('@s');
   }
 
   reloadHealthKit() {
-    execute.as('@a').as(this.SlayerModel.slayerTag).run(() => {
-      let potion = this.SlayerModel.slayerKitTime.scoreboard('@s');
+    execute.as('@a').as(this.slayerModel.slayerTag).run(() => {
+      let potion = this.slayerModel.slayerKitTime.scoreboard('@s');
       effect.give('@s', "minecraft:haste", 3, 2, true);
       effect.give('@s', "minecraft:resistance", 3, 0, true);
 
       _.if(potion.matches(SlayerService.KIT_TIME), () => {
         execute.as(Selector('@s', { nbt: NBT.not({ Inventory: [{ id: "minecraft:splash_potion", tag: { sl_potion: NBT.byte(1) } }] }) })).run(() => {
-          this.SlayerModel.giveHealthKit('@s');
+          this.slayerModel.giveHealthKit('@s');
           tellraw(`@s`,
             { "text": "[Skill] Dark Heal is ready.", "color": "dark_red", "bold": true, "italic": false }
           );
@@ -40,8 +40,8 @@ export class SlayerService {
   }
 
   announceUltimate() {
-    execute.as('@a').as(this.SlayerModel.slayerTag).run(() => {
-      _.if(this.SlayerModel.slayerUltiTime.scoreboard('@s').matches(SlayerService.ULTI_TIME), () => {
+    execute.as('@a').as(this.slayerModel.slayerTag).run(() => {
+      _.if(this.slayerModel.slayerUltiTime.if('@s', '==', SlayerService.ULTI_TIME), () => {
         tellraw(`@s`,
           { "text": "[Ulti] Dark Rune is ready.", "color": "dark_gray", "bold": true, "italic": false }
         );
@@ -50,23 +50,21 @@ export class SlayerService {
   }
 
   ultimate() {
-    let user_main = Selector('@a', {
-      "scores": { ['carrotstick_used']: [1,], [this.SlayerModel.slayerUltiTime.scoreboard.name]: [25,] },
-      "nbt": { SelectedItem: { id: "minecraft:carrot_on_a_stick", Count: NBT.byte(1), tag: { darkrune: NBT.byte(1) } } }
-    });
+    let user_main = `@a[scores={carrotstick_used=1..,${this.slayerModel.slayerUltiTime.getName()}=25..},nbt={SelectedItem:{id:"minecraft:carrot_on_a_stick",tag: { darkrune: 1b}}}]`;
 
     let user_off = Selector('@a', {
-      "scores": { ['carrotstick_used']: [1,], [this.SlayerModel.slayerUltiTime.scoreboard.name]: [25,] },
-      "nbt": { Inventory: [{ id: "minecraft:carrot_on_a_stick", Count: 1b, tag: { darkrune: NBT.byte(1) }, Slot: NBT.byte(-106) }] }
+      "scores": { ['carrotstick_used']: [1,], [this.slayerModel.slayerUltiTime.getName()]: [25,] },
+      "nbt": { Inventory: [{ id: "minecraft:carrot_on_a_stick", Count: NBT.byte(1), tag: { darkrune: NBT.byte(1) }, Slot: NBT.byte(-106) }] }
     });
 
     execute.as('@a').at(Selector('@s', {
       'scores': {
-        ['carrotstick_used']: [1,],
-        [this.SlayerModel.slayerUltiTime.scoreboard.name]: [],
-
+        'carrotstick_used': [1, +Infinity],
+        [this.slayerModel.slayerUltiTime.getName()]: [1, 1]
       }
-    }));
+    })).run(() => {
+
+    })
 
     raw('scoreboard players set @a[scores={carrotstick_used=1..,slayer_skill=25..},nbt={SelectedItem:{id:"minecraft:carrot_on_a_stick",Count:1b,tag:{darkrune:1b}}}] dark_rune 1');
     raw('execute at @a[nbt={SelectedItem:{id:"minecraft:carrot_on_a_stick",tag:{darkrune:1b}}},scores={damage_dealt=1..}] run scoreboard players set @e[distance=..10,scores={damage_taken=1..}] sl_slow 1');
@@ -92,14 +90,11 @@ export class SlayerService {
   }
 
   reloadKitScoreboard() {
-    this.SlayerModel.
-      slayerKitTime.
-      scoreboard(Selector('@a', { "scores": { [this.SlayerModel.slayerKitTime.scoreboard.name]: [, SlayerService.KIT_TIME - 1] } }))
-      .add(1);
+    this.slayerModel.
+      slayerKitTime.add(`@a[scores={${this.slayerModel.slayerKitTime.getName()}=..${SlayerService.KIT_TIME - 1}}]`, 1);
   }
 
   reloadUltiScoreboard() {
-    let scr = this.SlayerModel.slayerUltiTime.scoreboard;
-    scr(Selector('@a', { "scores": { [scr.name]: [, SlayerService.ULTI_TIME - 1] } })).add(1);
+    
   }
 }
